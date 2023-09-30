@@ -1,4 +1,4 @@
-# Dibimbing, Data Engineering Bootcamp
+# Tugas Day 18 - Data Pipelines for Streaming System Part 2
 
 1. Clone This Repo.
 2. Run `make docker-build` for x86 user, or `make docker-build-arm` for arm chip user.
@@ -10,6 +10,7 @@
 ## postgres			- Run a Postgres container
 ## spark			- Run a Spark cluster, rebuild the postgres container, then create the destination tables
 ## jupyter			- Spinup jupyter notebook for testing and validation purposes.
+## Kafka        - Spinup kafka
 ## airflow			- Spinup airflow scheduler and webserver.
 ## clean			- Cleanup all running containers related to the challenge.
 ```
