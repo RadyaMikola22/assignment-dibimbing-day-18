@@ -38,13 +38,13 @@ docker-build-arm:
 
 jupyter:
 	@echo '__________________________________________________________'
-	@echo 'Creating Jupyter Notebook Cluster at http://localhost:${JUPYTER_PORT} ...'
+	@echo 'Creating Jupyter Notebook Cluster at http://localhost:${JUPYTER_PORT}...'
 	@echo '__________________________________________________________'
 	@docker-compose -f ./docker/docker-compose-jupyter.yml --env-file .env up -d
 	@echo 'Created...'
 	@echo 'Processing token...'
-	@sleep 20
-	@docker logs ${JUPYTER_CONTAINER_NAME} 2>&1 | grep '\?token\=' -m 1 | cut -d '=' -f2
+	@timeout /t 20
+	@for /f "tokens=2 delims==" %%A in ('docker logs ${JUPYTER_CONTAINER_NAME} 2^>^&1 ^| findstr /C:"?token="') do @echo %%A
 	@echo '==========================================================='
 
 spark:
@@ -86,7 +86,7 @@ postgres-create:
 		echo 'Postgres Account	: ${POSTGRES_USER}' &&\
 		echo 'Postgres password	: ${POSTGRES_PASSWORD}' &&\
 		echo 'Postgres Db		: ${POSTGRES_DB}'
-	@sleep 5
+	@timeout /t 5
 	@echo '==========================================================='
 
 postgres-create-table:
@@ -144,7 +144,7 @@ spark-consume:
 	@echo '__________________________________________________________'
 	@docker exec ${SPARK_WORKER_CONTAINER_NAME}-1 \
 		spark-submit \
-		/spark-scripts/spark-event-consumer.py \
+		/spark-scripts/spark-daily-total-sales.py \
 
 clean:
 	@bash ./scripts/goodnight.sh
