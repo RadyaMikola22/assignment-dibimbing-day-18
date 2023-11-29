@@ -7,8 +7,3 @@ Adapun tambahan pada folder spark-scripts yaitu:
 2. spark-daily-total-sales = melakukan agregasi penjumlahan total penjualan perhari
 
 Adapun tambahan folder bernama 'checkpoint' digunakan sebagai direktori checkpoint pada option
-
-Catatan tambahan:
-- sebenernya saya belum berhasil saat menjalankan spark-daily-total-sales. Terdapat problem pada spark-daily-total-sales nya
-yaitu masalah checkpoint direktorinya. sudah saya cari berbagai cara namun masih menampilkan eror yang sama.
-
